@@ -26,7 +26,7 @@ print(f"Decimal : {number}")
 print(f"Binary  : {binary}")
 print(f"Ternary : {ternary}")
 
-print("\nDigit Count:")
+print("\nDigit Count:") 
 print(f"Binary Digits  : {len(binary)}")
 print(f"Ternary Digits : {len(ternary)}")
 
