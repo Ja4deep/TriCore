@@ -1,113 +1,120 @@
 # TriCore
 
-A Python project exploring ternary computing through number conversion tools, educational experiments, and future simulations of ternary logic systems.
+> **An educational Python project that explores ternary computing, balanced ternary, digital logic, and computer architecture.**
 
-![TriCore Demo](docs/tricore-demo.png)
+---
 
-## Quick Start
+## About
 
-Clone the repository and run one of the available tools:
+Modern computers use **binary (base-2)**, where everything is represented using **0** and **1**.
 
-```bash
-git clone https://github.com/yourusername/tricore.git
-cd tricore
+TriCore explores a simple question:
 
-python Decimal_to_Ternary_Converter.py
+> **What if computers used three digits instead of two?**
+
+This project is an educational experiment that investigates how ternary computing could work, from number systems and arithmetic to logic gates and CPU emulation.
+
+The goal is not to replace binary computing, but to better understand how computers work by building an alternative model from the ground up.
+
+---
+
+## Why I Built This
+
+TriCore started out of curiosity.
+
+I wanted to understand how a computer would behave if it used **three states** instead of two.
+
+Rather than only reading about ternary computing, I decided to build my own educational simulator to explore the concepts through code.
+
+---
+
+## Current Features
+
+* Decimal ↔ Ternary Conversion
+* Binary vs Ternary Comparison
+* Educational examples for understanding ternary numbers
+
+---
+
+## Planned Features
+
+* Balanced Ternary
+* Ternary Arithmetic
+* Logic Gates
+* CPU Emulator
+* Assembly Language
+* Interactive Visualizations
+
+---
+
+## Topics Covered
+
+TriCore explores several computer science concepts, including:
+
+* Ternary Number Systems
+* Balanced Ternary
+* Number Base Conversion
+* Arithmetic Algorithms
+* Digital Logic
+* Logic Gates
+* Computer Architecture
+* CPU Design
+* Assembly Language
+* Memory Organization
+
+---
+
+## Project Structure
+
+```text
+TriCore/
+│
+├── converters/
+├── arithmetic/
+├── balanced_ternary/
+├── logic_gates/
+├── cpu/
+├── assembler/
+├── visualizer/
+├── docs/
+└── main.py
 ```
 
-To run the ternary-to-decimal converter:
-
-```bash
-python Ternary_to_Decimal_Converter.py
-```
-
-## Features
-
-* Convert decimal numbers to ternary
-* Convert ternary numbers to decimal
-* Compare binary and ternary number representations
-* Explore the fundamentals of ternary computing
-* Build a foundation for future ternary logic simulations
-
-## Current Status
-
-TriCore is currently in active development.
-
-### Implemented
-
-* Decimal to ternary converter
-* Ternary to decimal converter
-* Binary vs ternary comparison program
-* Project structure and development environment
-
-### In Progress
-
-* Expanded ternary number system utilities
-* Improved conversion algorithms
-* Additional educational demonstrations
-
-### Planned
-
-* Ternary arithmetic engine
-* Ternary logic gate simulator
-* Interactive visualizations
-* Balanced ternary support
-* Experimental ternary CPU architecture concepts
-
-## Run Locally
-
-### Requirements
-
-* Python 3.10 or newer
-* Git
-
-### Clone Repository
-
-```bash
-git clone https://github.com/yourusername/tricore.git
-cd tricore
-```
-
-### Run a Program
-
-```bash
-python Decimal_to_Ternary_Converter.py
-```
-
-or
-
-```bash
-python Ternary_to_Decimal_Converter.py
-```
-
-or
-
-```bash
-python "Binary VS Ternary.py"
-```
-
-## How It Works
-
-Most modern computers represent information using binary digits (0 and 1). TriCore explores an alternative approach known as ternary computing, where values can exist in three states instead of two.
-
-The project currently focuses on number representation and conversion between decimal and ternary systems. These tools help demonstrate how information can be encoded and manipulated using base-3 mathematics.
-
-Future development will extend this foundation toward ternary arithmetic, logic gates, and experimental computer architecture concepts to investigate how a ternary-based computing system could operate.
+---
 
 ## Technologies
 
 * Python
-* Git
-* GitHub
+* Object-Oriented Programming
+* Algorithms
+* Computer Architecture Concepts
 
-## Why Ternary Computing?
+---
 
-Ternary computing has long been studied as a possible alternative to binary systems. In theory, ternary representations can store more information per digit and may offer advantages in certain mathematical and computational models.
+## Project Status
 
-TriCore serves as a learning and experimentation platform for exploring these ideas through practical implementations and simulations.
+TriCore is currently under active development.
 
-## Credits
+The current focus is building the mathematical and logical foundations before moving on to CPU emulation and interactive visualization.
 
-Created and maintained by Ja4deep.
+---
 
-Inspired by research into alternative computing architectures, ternary logic systems, and historical ternary computer designs.
+## Contributing
+
+Suggestions, feedback, and contributions are always welcome.
+
+If you're interested in computer architecture, digital logic, or alternative computing systems, feel free to open an issue or submit a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+**Ja4deep**
+
+*"Built out of curiosity to better understand how computers work beyond binary."*
