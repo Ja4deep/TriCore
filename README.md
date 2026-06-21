@@ -1,120 +1,148 @@
 # TriCore
 
-> **An educational Python project that explores ternary computing, balanced ternary, digital logic, and computer architecture.**
+> **An interactive educational application for exploring ternary computing, balanced ternary, number systems, digital logic, and computer architecture using Python.**
 
 ---
 
-## About
+## 📖 Overview
 
-Modern computers use **binary (base-2)**, where everything is represented using **0** and **1**.
+TriCore is an educational Python application designed to make ternary computing easy to understand through interactive learning.
 
-TriCore explores a simple question:
+While modern computers rely almost exclusively on the binary number system (base-2), ternary computing uses three possible values instead of two. This project explores how ternary number systems work, how they differ from binary, and why they are an interesting topic in computer science.
 
-> **What if computers used three digits instead of two?**
-
-This project is an educational experiment that investigates how ternary computing could work, from number systems and arithmetic to logic gates and CPU emulation.
-
-The goal is not to replace binary computing, but to better understand how computers work by building an alternative model from the ground up.
+Instead of simply producing answers, TriCore explains every calculation with step-by-step execution, mathematical verification, worked examples, and educational notes to help users understand the underlying concepts.
 
 ---
 
-## Why I Built This
+## ✨ Features
 
-TriCore started out of curiosity.
-
-I wanted to understand how a computer would behave if it used **three states** instead of two.
-
-Rather than only reading about ternary computing, I decided to build my own educational simulator to explore the concepts through code.
-
----
-
-## Current Features
-
-* Decimal ↔ Ternary Conversion
-* Binary vs Ternary Comparison
-* Educational examples for understanding ternary numbers
-
----
-
-## Planned Features
-
-* Balanced Ternary
-* Ternary Arithmetic
-* Logic Gates
-* CPU Emulator
-* Assembly Language
-* Interactive Visualizations
+* 🔢 Decimal ↔ Ternary Conversion
+* ⚖️ Balanced Ternary Conversion
+* 🔄 Number System Verification
+* ➕ Ternary Arithmetic
+* 🧮 Intermediate Calculations
+* 📖 Educational Explanations
+* 📝 Worked Examples
+* ✔️ Mathematical Verification
+* 📊 Formatted Tables
+* 🏷️ Legends and Formula References
+* 🛡️ Input Validation
+* 🔁 Round-Trip Verification
+* 🖥️ Clean Terminal Interface
 
 ---
 
-## Topics Covered
+## 🎯 Learning Goals
 
-TriCore explores several computer science concepts, including:
+TriCore is designed to help users:
 
-* Ternary Number Systems
-* Balanced Ternary
-* Number Base Conversion
-* Arithmetic Algorithms
-* Digital Logic
-* Logic Gates
-* Computer Architecture
-* CPU Design
-* Assembly Language
-* Memory Organization
+* Understand the ternary number system
+* Learn balanced ternary representation
+* Compare binary and ternary computing
+* Explore arithmetic in different number systems
+* Study digital logic concepts
+* Build a foundation in computer architecture
+* Develop confidence through guided examples
 
 ---
 
-## Project Structure
+## 📚 Educational Approach
+
+Rather than acting as a simple converter, TriCore focuses on teaching the reasoning behind every operation.
+
+Whenever applicable, the application provides:
+
+* Concept explanations
+* Mathematical formulas
+* Step-by-step calculations
+* Intermediate results
+* Verification of answers
+* Worked examples
+* Learning summaries
+
+This approach encourages users to understand the process instead of memorizing results.
+
+---
+
+## 📂 Project Structure
 
 ```text
 TriCore/
 │
-├── converters/
-├── arithmetic/
-├── balanced_ternary/
-├── logic_gates/
-├── cpu/
-├── assembler/
-├── visualizer/
-├── docs/
-└── main.py
+├── arithmetic/          # Arithmetic operations
+├── converters/          # Number system conversions
+├── digital_logic/       # Logic gate implementations
+├── cpu/                 # CPU-related concepts
+├── utils/               # Shared helper functions
+├── tests/               # Unit tests
+├── main.py              # Application entry point
+└── README.md
 ```
 
 ---
 
-## Technologies
+## 🛠️ Technologies Used
 
-* Python
-* Object-Oriented Programming
-* Algorithms
-* Computer Architecture Concepts
-
----
-
-## Project Status
-
-TriCore is currently under active development.
-
-The current focus is building the mathematical and logical foundations before moving on to CPU emulation and interactive visualization.
+* Python 3
+* Modular Programming
+* Mathematical Algorithms
+* Terminal-Based User Interface
+* Structured Documentation
 
 ---
 
-## Contributing
+## 🚀 Getting Started
 
-Suggestions, feedback, and contributions are always welcome.
+### Clone the repository
 
-If you're interested in computer architecture, digital logic, or alternative computing systems, feel free to open an issue or submit a pull request.
+```bash
+git clone https://github.com/your-username/TriCore.git
+```
+
+### Navigate to the project
+
+```bash
+cd TriCore
+```
+
+### Run the application
+
+```bash
+python main.py
+```
 
 ---
 
-## License
+## 📈 Future Improvements
 
-This project is licensed under the MIT License.
+Planned enhancements include:
+
+* Advanced ternary arithmetic
+* Additional balanced ternary operations
+* Expanded digital logic simulations
+* Ternary CPU instruction simulation
+* Interactive learning modules
+* Performance comparisons with binary computing
+* Visualization of conversion algorithms
 
 ---
 
-## Author
+## 🤝 Contributing
+
+Contributions are welcome.
+
+If you have ideas for new educational features, improvements, bug fixes, or documentation updates, feel free to open an issue or submit a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👤 Author
 
 **Ja4deep**
 
-*"Built out of curiosity to better understand how computers work beyond binary."*
+*"Learning computer science by building it."*
