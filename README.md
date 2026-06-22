@@ -109,8 +109,7 @@ The goal is not only to calculate correctly—but also to make the underlying co
 Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/TriCore.git
-```
+git clone https://github.com/Ja4deep/TriCore.git```
 
 Move into the project directory.
 
