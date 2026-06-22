@@ -1,7 +1,11 @@
 from converters.decimal_to_ternary import decimal_to_ternary, get_decimal_input
-
-
-SEPARATOR = "=" * 40
+from ui.terminal import (
+    explanation_screen,
+    key_value_lines,
+    print_screen,
+    result_screen,
+    table_lines,
+)
 
 
 def decimal_to_binary(number: int) -> str:
@@ -31,55 +35,82 @@ def compare_binary_and_ternary(number: int) -> tuple[str, str, str]:
 
 def display_header() -> None:
     """Display the binary-vs-ternary comparison title."""
-    print(SEPARATOR)
-    print("BINARY VS TERNARY COMPARISON".center(40))
-    print(SEPARATOR)
+    print_screen(
+        explanation_screen(
+            "Binary vs Ternary",
+            ["Compare how base 2 and base 3 represent the same decimal value."],
+        )
+    )
 
 
 def explain_comparison() -> None:
     """Explain why binary and ternary lengths can be compared."""
-    print("\nHow the Comparison Works")
-    print("-" * 40)
-    print("Binary is base-2, so it uses the digits 0 and 1.")
-    print("Ternary is base-3, so it uses the digits 0, 1, and 2.")
-    print("A larger base usually stores the same value using fewer places.")
-    print("This program compares the number of digits needed in each base.")
+    print_screen(
+        explanation_screen(
+            "How the Comparison Works",
+            [
+                "Binary is base 2, so it uses the digits 0 and 1.",
+                "Ternary is base 3, so it uses the digits 0, 1, and 2.",
+                "A larger base usually stores the same value using fewer places.",
+                "This program compares the number of digits needed in each base.",
+            ],
+        )
+    )
+
+
+def digit_count_table_lines(binary: str, ternary: str) -> list[str]:
+    """Return a table comparing binary and ternary digit counts."""
+    return table_lines(
+        ["Number System", "Base", "Digits"],
+        [
+            ("Binary", 2, len(binary.lstrip("-"))),
+            ("Ternary", 3, len(ternary.lstrip("-"))),
+        ],
+    )
 
 
 def display_digit_count_table(binary: str, ternary: str) -> None:
     """Display a small table comparing binary and ternary digit counts."""
-    binary_digit_count = len(binary.lstrip("-"))
-    ternary_digit_count = len(ternary.lstrip("-"))
-
-    print("\nDigit Count Table")
-    print("-" * 40)
-    print(f"{'Number System':<18}{'Base':>6}{'Digits':>10}")
-    print("-" * 40)
-    print(f"{'Binary':<18}{2:>6}{binary_digit_count:>10}")
-    print(f"{'Ternary':<18}{3:>6}{ternary_digit_count:>10}")
+    print_screen(
+        explanation_screen("Digit Count Table", digit_count_table_lines(binary, ternary))
+    )
 
 
 def display_results(number: int) -> None:
     """Display binary, ternary, digit counts, and a learning summary."""
     binary, ternary, comparison = compare_binary_and_ternary(number)
 
-    print("\nComparison Result")
-    print("-" * 40)
-    print(f"Decimal Number : {number}")
-    print(f"Binary         : {binary}")
-    print(f"Ternary        : {ternary}")
-
+    print_screen(
+        result_screen(
+            "Comparison Result",
+            key_value_lines(
+                [
+                    ("Decimal Number", number),
+                    ("Binary", binary),
+                    ("Ternary", ternary),
+                ]
+            ),
+        )
+    )
     display_digit_count_table(binary, ternary)
-
-    print("\nObservation")
-    print("-" * 40)
-    print(comparison)
-    print("The sign is not counted as a digit because it only shows direction.")
-
-    print("\nLearning Summary")
-    print("-" * 40)
-    print("Binary and ternary are both positional number systems.")
-    print("Changing the base changes how many digit positions are needed.")
+    print_screen(
+        explanation_screen(
+            "Observation",
+            [
+                comparison,
+                "The sign is not counted as a digit because it only shows direction.",
+            ],
+        )
+    )
+    print_screen(
+        explanation_screen(
+            "Learning Summary",
+            [
+                "Binary and ternary are both positional number systems.",
+                "Changing the base changes how many digit positions are needed.",
+            ],
+        )
+    )
 
 
 def main() -> None:

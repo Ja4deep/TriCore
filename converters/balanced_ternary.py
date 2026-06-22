@@ -5,12 +5,24 @@ try:
 except ModuleNotFoundError:
     from decimal_to_ternary import decimal_to_ternary
 
+from ui.terminal import (
+    error_screen,
+    explanation_screen,
+    input_screen,
+    key_value_lines,
+    menu_screen,
+    print_screen,
+    prompt,
+    result_screen,
+    success_message,
+    table_lines,
+)
+
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 
-SEPARATOR = "=" * 40
 BALANCED_DIGIT_VALUES = {
     "T": -1,
     "0": 0,
@@ -19,9 +31,12 @@ BALANCED_DIGIT_VALUES = {
 
 def display_header() -> None:
     """Display the balanced ternary module title."""
-    print(SEPARATOR)
-    print("BALANCED TERNARY CONVERTER".center(40))
-    print(SEPARATOR)
+    print_screen(
+        explanation_screen(
+            "Balanced Ternary Converter",
+            ["Study base 3 with digit values -1, 0, and +1."],
+        )
+    )
 
 
 def clean_input(raw_input_value: str) -> str:
@@ -32,12 +47,19 @@ def clean_input(raw_input_value: str) -> str:
 def get_decimal_input() -> int:
     """Ask the user for a decimal integer until the input is valid."""
     while True:
-        raw_input_value = clean_input(input("Enter a decimal integer: "))
+        print_screen(
+            input_screen(
+                "Input",
+                "Enter a decimal integer",
+                "Whole numbers are supported, including negatives.",
+            )
+        )
+        raw_input_value = clean_input(prompt("Enter a decimal integer"))
 
         try:
             return int(raw_input_value)
         except ValueError:
-            print("Invalid input. Please enter a whole number, such as 8 or -11.\n")
+            print_screen(error_screen("Please enter a whole number, such as 8 or -11."))
 
 
 def validate_balanced_ternary(balanced_ternary: str) -> str:
@@ -70,28 +92,39 @@ def validate_balanced_ternary(balanced_ternary: str) -> str:
 def get_balanced_ternary_input() -> str:
     """Ask the user for balanced ternary until the input is valid."""
     while True:
-        try:
-            return validate_balanced_ternary(
-                input("Enter a balanced ternary number using T, 0, and 1: ")
+        print_screen(
+            input_screen(
+                "Input",
+                "Enter a balanced ternary number",
+                "Use T for -1, 0 for zero, and 1 for +1.",
             )
+        )
+        try:
+            return validate_balanced_ternary(prompt("Enter a balanced ternary number"))
         except ValueError as error:
-            print(f"Invalid input. {error}\n")
+            print_screen(error_screen(str(error)))
 
 
 def get_conversion_mode() -> str:
     """Ask the user which balanced ternary conversion mode to run."""
     while True:
-        print("\nChoose a conversion mode:")
-        print("1. Decimal -> Balanced Ternary")
-        print("2. Balanced Ternary -> Decimal")
-        print("3. Exit")
+        print_screen(
+            menu_screen(
+                "Balanced Ternary",
+                [
+                    ("1", "Decimal to Balanced Ternary"),
+                    ("2", "Balanced Ternary to Decimal"),
+                    ("3", "Back"),
+                ],
+            )
+        )
 
-        choice = clean_input(input("\nEnter your choice: "))
+        choice = clean_input(prompt())
 
         if choice in {"1", "2", "3"}:
             return choice
 
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        print_screen(error_screen("Please enter 1, 2, or 3."))
 
 
 def balanced_digit_from_remainder(remainder: int) -> tuple[str, int]:
@@ -251,50 +284,62 @@ def format_signed_sum(values: list[int]) -> str:
 
 def explain_conversion() -> None:
     """Print an educational explanation of balanced ternary."""
-    print("\n" + "-" * 40)
-    print("HOW BALANCED TERNARY WORKS")
-    print("-" * 40)
-    print("Ordinary ternary is base-3 and uses digits 0, 1, and 2.")
-    print("Balanced ternary is still base-3, but its digits are T, 0, and 1.")
-    print("T represents -1, so each digit can mean -1, 0, or +1.")
-    print()
-    print("Balanced ternary removes the digit 2 by rewriting it as:")
-    print("2 = -1 + 3")
-    print()
-    print("That is why remainder 2 becomes T with a carry of 1.")
-    print("The T supplies -1 in the current place.")
-    print("The carry supplies +3 in the next higher place.")
-    print()
-    print("One advantage is symmetry: positive and negative values use the")
-    print("same digit positions, and negation is done by swapping 1 and T.")
+    print_screen(
+        explanation_screen(
+            "How Balanced Ternary Works",
+            [
+                "Ordinary ternary is base 3 and uses digits 0, 1, and 2.",
+                "Balanced ternary is still base 3, but its digits are T, 0, and 1.",
+                "T represents -1, so each digit can mean -1, 0, or +1.",
+                "",
+                "Balanced ternary removes the digit 2 by rewriting it as:",
+                "2 = -1 + 3",
+                "",
+                "That is why remainder 2 becomes T with a carry of 1.",
+                "The T supplies -1 in the current place.",
+                "The carry supplies +3 in the next higher place.",
+                "",
+                "One advantage is symmetry: negation swaps 1 and T.",
+            ],
+        )
+    )
 
 
 def explain_examples() -> None:
     """Print small reference examples for common balanced ternary values."""
-    print("\nSmall Examples")
-    print("-" * 40)
-
-    for number in [2, 5, 8, 11]:
-        balanced_ternary = decimal_to_balanced_ternary(number)
-        print(f"{number:>2} -> {balanced_ternary}")
+    rows = [(number, decimal_to_balanced_ternary(number)) for number in [2, 5, 8, 11]]
+    print_screen(
+        explanation_screen(
+            "Small Examples",
+            table_lines(["Decimal", "Balanced"], rows),
+        )
+    )
 
 
 def display_step_by_step_conversion(number: int, balanced_ternary: str) -> None:
     """Display each division step used for decimal to balanced conversion."""
-    print("\n" + "-" * 40)
-    print("STEP-BY-STEP CONVERSION")
-    print("-" * 40)
+    lines = []
 
     if number == 0:
-        print("0 is represented as 0 in balanced ternary.")
+        print_screen(
+            explanation_screen(
+                "Step-by-Step Conversion",
+                ["0 is represented as 0 in balanced ternary."],
+            )
+        )
         return
 
     working_number = abs(number)
 
     if number < 0:
-        print(f"First convert the magnitude {working_number}.")
-        print("Then invert the digits because the original number is negative.")
-        print("1 becomes T, T becomes 1, and 0 stays 0.\n")
+        lines.extend(
+            [
+                f"First convert the magnitude {working_number}.",
+                "Then invert the digits because the original number is negative.",
+                "1 becomes T, T becomes 1, and 0 stays 0.",
+                "",
+            ]
+        )
 
     for step in get_conversion_steps(working_number):
         current_number = step["number"]
@@ -304,17 +349,18 @@ def display_step_by_step_conversion(number: int, balanced_ternary: str) -> None:
         carry = step["carry"]
         next_number = step["next_number"]
 
-        print(f"{current_number} / 3 = {quotient} remainder {remainder}")
+        lines.append(f"{current_number} / 3 = {quotient} remainder {remainder}")
 
         if remainder == 2:
-            print("remainder 2 -> write T, carry 1 because 2 = -1 + 3")
-            print(f"{quotient} + carry = {next_number}")
+            lines.append("remainder 2 -> write T, carry 1 because 2 = -1 + 3")
+            lines.append(f"{quotient} + carry = {next_number}")
         else:
-            print(f"remainder {remainder} -> write {digit}, carry {carry}")
+            lines.append(f"remainder {remainder} -> write {digit}, carry {carry}")
 
-        print()
+        lines.append("")
 
-    print(f"Balanced Ternary = {balanced_ternary}")
+    lines.append(f"Balanced Ternary = {balanced_ternary}")
+    print_screen(explanation_screen("Step-by-Step Conversion", lines))
 
 
 def build_place_value_rows(
@@ -337,29 +383,18 @@ def build_place_value_rows(
 
 def display_place_value_table(balanced_ternary: str) -> None:
     """Display the place-value table for a balanced ternary number."""
-    print("\n" + "-" * 40)
-    print("PLACE-VALUE TABLE")
-    print("-" * 40)
-    print(
-        f"{'Digit':<8}"
-        f"{'Value':>7}"
-        f"{'Power':>8}"
-        f"{'Place Value':>14}"
-        f"{'Contribution':>15}"
-    )
-    print("-" * 52)
-
-    for digit, digit_value, power, place_value, contribution in build_place_value_rows(
-        balanced_ternary
-    ):
-        formatted_power = f"3{superscript_power(power)}"
-        print(
-            f"{digit:<8}"
-            f"{digit_value:>7}"
-            f"{formatted_power:>8}"
-            f"{place_value:>14}"
-            f"{contribution:>15}"
+    rows = [
+        (digit, digit_value, f"3{superscript_power(power)}", place_value, contribution)
+        for digit, digit_value, power, place_value, contribution in build_place_value_rows(
+            balanced_ternary
         )
+    ]
+    print_screen(
+        explanation_screen(
+            "Place-Value Table",
+            table_lines(["Digit", "Value", "Power", "Place", "Contribution"], rows),
+        )
+    )
 
 
 def verify_conversion(balanced_ternary: str) -> str:
@@ -395,17 +430,22 @@ def display_round_trip_verification(
     original_decimal: int, balanced_ternary: str
 ) -> None:
     """Display whether the conversion passes round-trip verification."""
-    print("\n" + "-" * 40)
-    print("ROUND-TRIP VERIFICATION")
-    print("-" * 40)
-
     converted_decimal = balanced_ternary_to_decimal(balanced_ternary)
-    print(f"Balanced -> Decimal : {converted_decimal}")
+    status = (
+        "[OK] Verification Successful"
+        if converted_decimal == original_decimal
+        else "[X] Verification Failed"
+    )
 
-    if converted_decimal == original_decimal:
-        print("[OK] Verification Successful")
-    else:
-        print("[X] Verification Failed")
+    print_screen(
+        result_screen(
+            "Round-Trip Verification",
+            [
+                f"Balanced -> Decimal : {converted_decimal}",
+                status,
+            ],
+        )
+    )
 
 
 def display_results(number: int) -> None:
@@ -413,30 +453,39 @@ def display_results(number: int) -> None:
     ordinary_ternary = decimal_to_ternary(number)
     balanced_ternary = decimal_to_balanced_ternary(number)
 
-    print("\n" + "-" * 40)
-    print("CONVERSION RESULT")
-    print("-" * 40)
-    print(f"Input Number    : {number}")
-    print(f"Ordinary Base-3 : {ordinary_ternary}")
-    print(f"Balanced Base-3 : {balanced_ternary}")
+    print_screen(
+        result_screen(
+            "Conversion Result",
+            key_value_lines(
+                [
+                    ("Input Number", number),
+                    ("Ordinary Base-3", ordinary_ternary),
+                    ("Balanced Base-3", balanced_ternary),
+                ]
+            ),
+        )
+    )
 
-    print("\nLegend")
-    print("T = -1")
-    print("0 = 0")
-    print("1 = +1")
+    print_screen(explanation_screen("Legend", ["T = -1", "0 = 0", "1 = +1"]))
 
     display_step_by_step_conversion(number, balanced_ternary)
     display_place_value_table(balanced_ternary)
 
-    print("\n" + "-" * 40)
-    print(verify_conversion(balanced_ternary))
+    print_screen(
+        explanation_screen("Verification", verify_conversion(balanced_ternary).splitlines())
+    )
 
     display_round_trip_verification(number, balanced_ternary)
 
-    print("\nLearning Summary")
-    print("-" * 40)
-    print("Balanced ternary uses -1, 0, and +1 as digit values.")
-    print("The digit T makes it easy to represent negative contributions.")
+    print_screen(
+        explanation_screen(
+            "Learning Summary",
+            [
+                "Balanced ternary uses -1, 0, and +1 as digit values.",
+                "The digit T makes it easy to represent negative contributions.",
+            ],
+        )
+    )
 
 
 def display_reverse_conversion_results(balanced_ternary: str) -> None:
@@ -444,21 +493,33 @@ def display_reverse_conversion_results(balanced_ternary: str) -> None:
     normalized_value = validate_balanced_ternary(balanced_ternary)
     decimal_value = balanced_ternary_to_decimal(normalized_value)
 
-    print("\n" + "-" * 40)
-    print("REVERSE CONVERSION RESULT")
-    print("-" * 40)
-    print(f"Balanced Base-3 : {normalized_value}")
-    print(f"Decimal Number  : {decimal_value}")
+    print_screen(
+        result_screen(
+            "Reverse Conversion Result",
+            key_value_lines(
+                [
+                    ("Balanced Base-3", normalized_value),
+                    ("Decimal Number", decimal_value),
+                ]
+            ),
+        )
+    )
 
     display_place_value_table(normalized_value)
 
-    print("\n" + "-" * 40)
-    print(verify_conversion(normalized_value))
+    print_screen(
+        explanation_screen("Verification", verify_conversion(normalized_value).splitlines())
+    )
 
-    print("\nLearning Summary")
-    print("-" * 40)
-    print("Each balanced ternary digit is multiplied by a power of 3.")
-    print("Adding the positive and negative contributions gives the decimal value.")
+    print_screen(
+        explanation_screen(
+            "Learning Summary",
+            [
+                "Each balanced ternary digit is multiplied by a power of 3.",
+                "Adding the positive and negative contributions gives the decimal value.",
+            ],
+        )
+    )
 
 
 def main() -> None:
@@ -475,7 +536,7 @@ def main() -> None:
         elif choice == "2":
             display_reverse_conversion_results(get_balanced_ternary_input())
         else:
-            print("\nExiting Balanced Ternary Converter.")
+            print_screen(success_message("Returning to the converter menu."))
             break
 
 

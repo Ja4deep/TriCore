@@ -1,98 +1,130 @@
-# TriCore
+<p align="center">
+  <img src="assets/banner.png" alt="TriCore Banner" width="100%">
+</p>
+<h1 align="center">TriCore</h1>
 
-> **An educational Python application for learning ternary computing through interactive number system conversions and computer science concepts.**
+<p align="center">
+  <strong>Learn Ternary Computing Through Interactive Exploration</strong>
+</p>
 
----
-
-# 📖 Overview
-
-**TriCore** is an educational Python project that introduces the fundamentals of **ternary computing**. Unlike traditional converters that only display the final answer, TriCore explains the conversion process step by step, helping users understand the mathematics behind different number systems.
-
-The application currently focuses on ordinary ternary, balanced ternary, and comparisons between binary and ternary representations while maintaining a modular and extensible codebase.
-
----
-
-# ✨ Current Features
-
-* 🔢 Decimal → Ordinary Ternary Conversion
-* 🔄 Ordinary Ternary → Decimal Conversion
-* ⚖️ Balanced Ternary Conversion
-* 📊 Binary vs Ternary Comparison
-* 📖 Educational explanations before each lesson
-* 📝 Step-by-step conversion process
-* ✔️ Mathematical verification
-* 🛡️ Input validation
-* 🖥️ Simple terminal-based interface
-* 📚 Modular project structure
+<p align="center">
+  An educational Python application for learning number systems, ternary arithmetic, and the fundamentals of computer architecture.
+</p>
 
 ---
 
-# 📚 Educational Approach
+## 📖 About
 
-TriCore is designed to teach concepts rather than simply provide answers.
+TriCore is an educational terminal application built in Python that helps users understand how computers represent and manipulate numbers.
 
-Each learning module may include:
+Instead of acting like a traditional calculator, TriCore explains every step of the process. Whether you're converting between number systems or performing ternary arithmetic, the application focuses on teaching the underlying concepts rather than simply displaying the final answer.
 
-* Concept explanations
-* Step-by-step calculations
-* Intermediate results
-* Mathematical verification
-* Worked examples
-* Educational summaries
-
-This makes the project suitable for learning how different number systems work in computer science.
+The project is designed for students, educators, programming enthusiasts, and anyone interested in exploring ternary computing through an interactive learning experience.
 
 ---
 
-# 📂 Project Structure
+## ✨ Features
 
-```text
-TriCore/
-│
-├── arithmetic/
-│   └── arithmetic.py
-│
-├── converters/
-│   ├── balanced_ternary.py
-│   ├── binary_vs_ternary.py
-│   ├── decimal_to_ternary.py
-│   └── ternary_to_decimal.py
-│
-├── tests/
-│   └── test_balanced_ternary.py
-│
-├── main.py
-├── README.md
-└── .gitignore
-```
+### 🔢 Number System Converter
+
+Convert numbers between multiple numeral systems with detailed explanations.
+
+* Decimal ↔ Binary
+* Decimal ↔ Ternary
+* Binary ↔ Ternary
+* Balanced Ternary ↔ Decimal
+* Step-by-step conversion walkthroughs
+* Robust input validation
 
 ---
 
-# 🛠 Technologies Used
+### ➕ Arithmetic Engine
 
-* Python 3
-* Modular Programming
-* Functions
-* Mathematical Algorithms
-* Terminal-Based User Interface
+Perform arithmetic directly in base-3.
+
+Supported operations include:
+
+* Addition
+* Subtraction
+* Multiplication
+* Division
+
+Educational features:
+
+* Carry visualization
+* Borrow visualization
+* Step-by-step explanation mode
+* Formatted arithmetic layout
 
 ---
 
-# 🚀 Getting Started
+### 📚 Learn Center
 
-## Clone the repository
+Explore the theory behind computer number systems.
+
+Topics include:
+
+* Binary Number System
+* Ternary Number System
+* Balanced Ternary
+* Positional Number Systems
+* Conversion Techniques
+* Arithmetic Fundamentals
+
+---
+
+### 🛡 User Experience
+
+TriCore is designed to provide a smooth learning experience.
+
+* Friendly error messages
+* Clean terminal interface
+* Modular architecture
+* Consistent menus
+* Input validation
+* Beginner-friendly explanations
+
+---
+
+## 💡 Why TriCore?
+
+Most number system converters simply produce an answer.
+
+TriCore was built with a different philosophy.
+
+Every feature is designed to help users understand **how** and **why** an answer is produced. Instead of hiding the process, TriCore breaks each conversion and arithmetic operation into clear, easy-to-follow steps that encourage learning through exploration.
+
+The goal is not only to calculate correctly—but also to make the underlying concepts intuitive and accessible.
+
+---
+
+## 📸 Screenshots
+
+> Screenshots will be added here.
+
+---
+
+## 🚀 Installation
+
+Clone the repository.
 
 ```bash
-git clone https://github.com/Ja4deep/TriCore.git
+git clone https://github.com/yourusername/TriCore.git
 ```
 
-## Navigate to the project
+Move into the project directory.
 
 ```bash
 cd TriCore
 ```
 
-## Run the application
+Install the required dependencies.
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application.
 
 ```bash
 python main.py
@@ -100,61 +132,58 @@ python main.py
 
 ---
 
-# 🎯 Learning Topics
+## 📁 Project Structure
 
-TriCore currently explores:
-
-* Decimal Number System
-* Ordinary Ternary Number System
-* Balanced Ternary
-* Binary vs Ternary Comparison
-* Number System Conversion Algorithms
-
-Additional educational modules will be added as the project grows.
-
----
-
-# 🧪 Testing
-
-The project includes a dedicated **tests** directory for validating implementations.
-
-Run tests using:
-
-```bash
-python -m unittest discover tests
+```text
+TriCore/
+│
+├── converters/
+├── arithmetic/
+├── learn_center/
+├── tests/
+├── assets/
+├── main.py
+└── README.md
 ```
 
 ---
 
-# 🚧 Future Improvements
+## 🧪 Testing
 
-Planned additions include:
+Run the test suite using:
 
-* Ternary arithmetic operations
-* More educational examples
-* Additional mathematical verification
-* Digital logic demonstrations
-* Computer architecture concepts
-* Improved terminal interface
+```bash
+pytest
+```
 
----
+The project includes tests covering:
 
-# 🤝 Contributing
-
-Suggestions, bug reports, and pull requests are welcome.
-
-If you would like to improve the educational content or add new ternary computing features, feel free to contribute.
+* Number system conversions
+* Arithmetic operations
+* Validation
+* Edge cases
+* Carry and borrow logic
 
 ---
 
-# 📄 License
+## 🛠 Built With
+
+* Python 3.12+
+* Colorama
+* Pytest
+
+---
+
+## 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-# 👨‍💻 Author
+<div align="center">
 
-**Ja4deep**
+**If you found TriCore useful or interesting, consider giving the repository a ⭐.**
 
-*"Exploring computer science through ternary computing."*
+It helps others discover the project and supports future development.
+
+</div>
