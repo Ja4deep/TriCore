@@ -16,12 +16,13 @@
 
 # 📖 About
 
-TriCore is an educational computer science platform designed to teach the foundations of number systems, ternary arithmetic, digital logic, and computer architecture through interactive simulations and hands-on experimentation.
+TriCore is an open-source educational platform designed to help students explore **balanced ternary computing** through interactive lessons, simulations, and digital logic experiments.
 
-Unlike traditional calculators and converters that simply produce answers, TriCore focuses on explaining how results are obtained. Every module is designed to help users understand the reasoning behind computations, logic operations, and circuit behavior.
+Unlike traditional calculators and converters that simply produce answers, TriCore focuses on explaining **how and why** results are obtained. Every module guides users through computations, logic operations, and circuit behavior using step-by-step explanations.
 
-The project combines theoretical learning with practical exploration, allowing students to move from basic number representations to building and simulating complete ternary logic circuits.
+By combining theoretical concepts with hands-on experimentation, TriCore enables learners to progress from understanding number systems and ternary arithmetic to exploring digital logic, truth tables, and ternary logic circuits.
 
+Whether you're a student, educator, or computer science enthusiast, TriCore provides an interactive environment for learning concepts that extend beyond traditional binary computing.
 ---
 
 # ✨ Features
