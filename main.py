@@ -1,26 +1,30 @@
 from __future__ import annotations
 
+from config import PROJECT_NAME
+from logging_config import configure_logging
 from arithmetic import add_numbers, divide_numbers, multiply_numbers, subtract_numbers
 from arithmetic.explanation import ArithmeticResult, ExplanationStep
 from converters.binary_vs_ternary import (
-    display_header as display_binary_vs_ternary_header,
-    display_results as display_binary_vs_ternary_results,
+    display_header as show_binary_vs_ternary,
+    display_results as show_binary_vs_ternary_results,
     explain_comparison,
 )
-from converters.balanced_ternary import main as run_balanced_ternary_module
+from converters.balanced_ternary import main as run_balanced_ternary
 from converters.decimal_to_ternary import (
-    display_header as display_decimal_to_ternary_header,
-    display_results as display_decimal_to_ternary_results,
-    explain_conversion as explain_decimal_to_ternary,
+    display_header as show_dec_to_ter,
+    display_results as show_dec_to_ter_results,
+    explain_conversion as explain_dec_to_ter,
     get_decimal_input,
 )
 from converters.ternary_to_decimal import (
-    display_header as display_ternary_to_decimal_header,
-    display_results as display_ternary_to_decimal_results,
-    explain_conversion as explain_ternary_to_decimal,
+    display_header as show_ter_to_dec,
+    display_results as show_ter_to_dec_results,
+    explain_conversion as explain_ter_to_dec,
     get_ternary_input,
 )
-from learn_center.learn_center import main as run_learn_center_module
+from digital_logic import main as run_digital_logic
+from learn_center.learn_center import main as run_learn_center
+from logic_circuit_simulator import main as run_circuit_simulator
 from ui.terminal import (
     CONTENT_WIDTH,
     error_screen,
@@ -36,24 +40,21 @@ from ui.terminal import (
 )
 
 
-PROJECT_NAME = "TriCore"
-PROJECT_SUBTITLE = "Educational Ternary Computing Lab"
-
-
 def main_menu() -> str:
-    """Display the main TriCore menu and return the selected option."""
+    """Display the TriCore main menu and poll choices."""
     print_screen(
         menu_screen(
-            PROJECT_NAME,
+            f"{PROJECT_NAME} Main Menu",
             [
-                ("1", "Number System Converter"),
+                ("1", "Number System Converters"),
                 ("2", "Arithmetic Engine"),
-                ("3", "Learn Center"),
-                ("4", "Settings"),
-                ("5", "Help"),
+                ("3", "Learning Center"),
+                ("4", "Digital Logic Laboratory"),
+                ("5", "Ternary Logic Circuit Simulator"),
+                ("6", "Settings"),
+                ("7", "Help"),
                 ("0", "Exit"),
             ],
-            subtitle=PROJECT_SUBTITLE,
         )
     )
     return prompt()
@@ -99,40 +100,30 @@ def get_decimal_number() -> int:
 
 
 def run_decimal_to_ternary() -> None:
-    """Run the educational decimal-to-ordinary-ternary lesson."""
-    display_decimal_to_ternary_header()
-    explain_decimal_to_ternary()
+    """Run the decimal-to-ternary converter."""
+    show_dec_to_ter()
+    explain_dec_to_ter()
     number = get_decimal_number()
-    display_decimal_to_ternary_results(number)
+    show_dec_to_ter_results(number)
     pause()
 
 
 def run_ternary_to_decimal() -> None:
-    """Run the educational ordinary-ternary-to-decimal lesson."""
-    display_ternary_to_decimal_header()
-    explain_ternary_to_decimal()
+    """Run the ternary-to-decimal converter."""
+    show_ter_to_dec()
+    explain_ter_to_dec()
     ternary = get_ternary_input()
-    display_ternary_to_decimal_results(ternary)
+    show_ter_to_dec_results(ternary)
     pause()
 
 
 def run_binary_vs_ternary() -> None:
-    """Run the educational binary-vs-ternary comparison lesson."""
-    display_binary_vs_ternary_header()
+    """Run the binary-vs-ternary comparison."""
+    show_binary_vs_ternary()
     explain_comparison()
     number = get_decimal_number()
-    display_binary_vs_ternary_results(number)
+    show_binary_vs_ternary_results(number)
     pause()
-
-
-def run_balanced_ternary() -> None:
-    """Run the educational balanced ternary module."""
-    run_balanced_ternary_module()
-
-
-def run_learn_center() -> None:
-    """Run the interactive Learn Center module."""
-    run_learn_center_module()
 
 
 def run_converter_menu() -> None:
@@ -309,8 +300,9 @@ def show_help() -> None:
                 "Use Number System Converter to study decimal, ternary, binary comparison, and balanced ternary.",
                 "Use Arithmetic Engine to solve ordinary ternary arithmetic step by step.",
                 "Use Learn Center for short conceptual lessons and historical context.",
+                "Use Digital Logic Laboratory to explore ternary gates, truth tables, and ternary logic expressions.",
                 "",
-                "Future modules can reuse this interface for logic gates, ALU simulation, and CPU simulation.",
+                "Future modules can reuse this interface for ternary ALU simulation and ternary CPU architecture studies.",
             ],
         )
     )
@@ -318,25 +310,43 @@ def show_help() -> None:
 
 
 def main() -> None:
-    """Run the TriCore terminal application."""
+    """Main entry point for TriCore."""
+    configure_logging()
+
     while True:
         choice = main_menu()
 
         if choice == "0":
-            print_screen(success_message("Exiting TriCore."))
+            print_screen(success_message("Exiting TriCore. Goodbye!"))
             break
-        if choice == "1":
+
+        elif choice == "1":
             run_converter_menu()
+
         elif choice == "2":
             run_arithmetic_menu()
+
         elif choice == "3":
             run_learn_center()
+
         elif choice == "4":
-            show_settings()
+            run_digital_logic()
+
         elif choice == "5":
+            run_circuit_simulator()
+
+        elif choice == "6":
+            show_settings()
+
+        elif choice == "7":
             show_help()
+
         else:
-            print_screen(error_screen("Please enter 0, 1, 2, 3, 4, or 5."))
+            print_screen(
+                error_screen(
+                    "Selected option is outside the valid range. Please choose a number between 0 and 7."
+                )
+            )
 
 
 if __name__ == "__main__":

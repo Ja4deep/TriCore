@@ -1,10 +1,7 @@
-import sys
+"""Educational balanced ternary conversion helpers."""
 
-try:
-    from converters.decimal_to_ternary import decimal_to_ternary
-except ModuleNotFoundError:
-    from decimal_to_ternary import decimal_to_ternary
-
+from arithmetic.utils import clean_input
+from converters.decimal_to_ternary import decimal_to_ternary
 from ui.terminal import (
     error_screen,
     explanation_screen,
@@ -18,16 +15,12 @@ from ui.terminal import (
     table_lines,
 )
 
-
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-
-
 BALANCED_DIGIT_VALUES = {
     "T": -1,
     "0": 0,
     "1": 1,
 }
+
 
 def display_header() -> None:
     """Display the balanced ternary module title."""
@@ -37,11 +30,6 @@ def display_header() -> None:
             ["Study base 3 with digit values -1, 0, and +1."],
         )
     )
-
-
-def clean_input(raw_input_value: str) -> str:
-    """Return user input with whitespace and hidden BOM characters removed."""
-    return raw_input_value.strip().replace("\ufeff", "").replace("\xef\xbb\xbf", "")
 
 
 def get_decimal_input() -> int:
@@ -219,7 +207,7 @@ def balanced_ternary_to_decimal(balanced_ternary: str) -> int:
     total = 0
 
     for power, digit in enumerate(reversed(normalized_value)):
-        total += BALANCED_DIGIT_VALUES[digit] * (3 ** power)
+        total += BALANCED_DIGIT_VALUES[digit] * (3**power)
 
     return total
 
@@ -237,7 +225,7 @@ def get_conversion_steps(number: int) -> list[dict[str, int | str]]:
     if number < 0:
         number = abs(number)
 
-    steps = []
+    steps: list[dict[str, int | str]] = []
 
     while number > 0:
         quotient = number // 3
@@ -374,7 +362,7 @@ def build_place_value_rows(
     for index, digit in enumerate(normalized_value):
         power = highest_power - index
         digit_value = BALANCED_DIGIT_VALUES[digit]
-        place_value = 3 ** power
+        place_value = 3**power
         contribution = digit_value * place_value
         rows.append((digit, digit_value, power, place_value, contribution))
 
@@ -472,7 +460,9 @@ def display_results(number: int) -> None:
     display_place_value_table(balanced_ternary)
 
     print_screen(
-        explanation_screen("Verification", verify_conversion(balanced_ternary).splitlines())
+        explanation_screen(
+            "Verification", verify_conversion(balanced_ternary).splitlines()
+        )
     )
 
     display_round_trip_verification(number, balanced_ternary)
@@ -508,7 +498,9 @@ def display_reverse_conversion_results(balanced_ternary: str) -> None:
     display_place_value_table(normalized_value)
 
     print_screen(
-        explanation_screen("Verification", verify_conversion(normalized_value).splitlines())
+        explanation_screen(
+            "Verification", verify_conversion(normalized_value).splitlines()
+        )
     )
 
     print_screen(

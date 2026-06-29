@@ -1,3 +1,5 @@
+"""Educational comparison helpers for binary and ordinary ternary notation."""
+
 from converters.decimal_to_ternary import decimal_to_ternary, get_decimal_input
 from ui.terminal import (
     explanation_screen,
@@ -72,7 +74,9 @@ def digit_count_table_lines(binary: str, ternary: str) -> list[str]:
 def display_digit_count_table(binary: str, ternary: str) -> None:
     """Display a small table comparing binary and ternary digit counts."""
     print_screen(
-        explanation_screen("Digit Count Table", digit_count_table_lines(binary, ternary))
+        explanation_screen(
+            "Digit Count Table", digit_count_table_lines(binary, ternary)
+        )
     )
 
 

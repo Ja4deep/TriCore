@@ -1,129 +1,216 @@
 <p align="center">
   <img src="assets/banner.png" alt="TriCore Banner" width="100%">
 </p>
+
 <h1 align="center">TriCore</h1>
 
 <p align="center">
-  <strong>Learn Ternary Computing Through Interactive Exploration</strong>
+  <strong>An Interactive Platform for Learning Ternary Computing, Digital Logic, and Computer Architecture</strong>
 </p>
 
 <p align="center">
-  An educational Python application for learning number systems, ternary arithmetic, and the fundamentals of computer architecture.
+  Built in Python • Educational • Open Source
 </p>
 
 ---
 
-## 📖 About
+# 📖 About
 
-TriCore is an educational terminal application built in Python that helps users understand how computers represent and manipulate numbers.
+TriCore is an educational computer science platform designed to teach the foundations of number systems, ternary arithmetic, digital logic, and computer architecture through interactive simulations and hands-on experimentation.
 
-Instead of acting like a traditional calculator, TriCore explains every step of the process. Whether you're converting between number systems or performing ternary arithmetic, the application focuses on teaching the underlying concepts rather than simply displaying the final answer.
+Unlike traditional calculators and converters that simply produce answers, TriCore focuses on explaining how results are obtained. Every module is designed to help users understand the reasoning behind computations, logic operations, and circuit behavior.
 
-The project is designed for students, educators, programming enthusiasts, and anyone interested in exploring ternary computing through an interactive learning experience.
+The project combines theoretical learning with practical exploration, allowing students to move from basic number representations to building and simulating complete ternary logic circuits.
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-### 🔢 Number System Converter
+## 🔢 Number System Laboratory
 
 Convert numbers between multiple numeral systems with detailed explanations.
 
-* Decimal ↔ Binary
-* Decimal ↔ Ternary
-* Binary ↔ Ternary
-* Balanced Ternary ↔ Decimal
-* Step-by-step conversion walkthroughs
-* Robust input validation
+Supported systems include:
+
+* Decimal
+* Binary
+* Ternary
+* Balanced Ternary
+
+Features:
+
+* Step-by-step conversions
+* Educational explanations
+* Input validation
+* Conversion walkthroughs
 
 ---
 
-### ➕ Arithmetic Engine
+## ➕ Ternary Arithmetic Engine
 
 Perform arithmetic directly in base-3.
 
-Supported operations include:
+Supported operations:
 
 * Addition
 * Subtraction
 * Multiplication
 * Division
 
-Educational features:
+Educational tools:
 
 * Carry visualization
 * Borrow visualization
-* Step-by-step explanation mode
-* Formatted arithmetic layout
+* Arithmetic breakdowns
+* Formatted working steps
 
 ---
 
-### 📚 Learn Center
+## 🧠 Digital Logic Laboratory
 
-Explore the theory behind computer number systems.
+Learn the foundations of digital electronics and computer architecture through interactive lessons.
 
 Topics include:
 
-* Binary Number System
-* Ternary Number System
-* Balanced Ternary
-* Positional Number Systems
-* Conversion Techniques
-* Arithmetic Fundamentals
+* Ternary Signals
+* Logic Gates
+* Ternary Logic
+* Truth Tables
+* Combinational Logic
+* Digital Circuits
+* CPU Applications
+
+Each lesson includes definitions, explanations, examples, and practical applications.
 
 ---
 
-### 🛡 User Experience
+## ⚡ Logic Gate Simulator
 
-TriCore is designed to provide a smooth learning experience.
+Experiment with ternary logic gates and observe their behavior in real time.
 
-* Friendly error messages
-* Clean terminal interface
-* Modular architecture
-* Consistent menus
-* Input validation
-* Beginner-friendly explanations
+Supported gates:
 
----
+| Gate | Description            |
+| ---- | ---------------------- |
+| NOT  | Ternary inversion      |
+| MIN  | Ternary AND equivalent |
+| MAX  | Ternary OR equivalent  |
+| SUM  | Modulo-3 addition      |
+| NMIN | Complement of MIN      |
+| NMAX | Complement of MAX      |
 
-## 💡 Why TriCore?
+Features:
 
-Most number system converters simply produce an answer.
-
-TriCore was built with a different philosophy.
-
-Every feature is designed to help users understand **how** and **why** an answer is produced. Instead of hiding the process, TriCore breaks each conversion and arithmetic operation into clear, easy-to-follow steps that encourage learning through exploration.
-
-The goal is not only to calculate correctly—but also to make the underlying concepts intuitive and accessible.
-
----
-
-## 📸 Screenshots
-
-> Screenshots will be added here.
+* Interactive simulation
+* Truth table generation
+* Educational explanations
+* Real-world applications
 
 ---
 
-## 🚀 Installation
+## 📋 Truth Table Generator
 
-Clone the repository.
+Automatically generate complete truth tables for supported ternary gates.
+
+Features:
+
+* Exhaustive input combinations
+* Structured tabular output
+* Educational reference material
+
+---
+
+## 🔌 Logic Circuit Simulator
+
+Build and simulate complete ternary logic circuits.
+
+Features:
+
+* Input nodes
+* Logic gate nodes
+* Output nodes
+* Circuit validation
+* Topological evaluation
+* Signal propagation tracing
+* Built-in example circuits
+
+Users can construct custom circuits and observe how ternary signals move through a network step by step.
+
+---
+
+## 📚 Interactive Learning Experience
+
+TriCore emphasizes understanding rather than memorization.
+
+Educational features include:
+
+* Guided lessons
+* Step-by-step explanations
+* Interactive simulations
+* Visualized signal propagation
+* Beginner-friendly terminology
+
+---
+
+# 💡 Why TriCore?
+
+Most educational tools focus on binary computing.
+
+TriCore explores an alternative approach: **ternary computing**, where information is represented using three states:
+
+```text
+0 = LOW
+1 = MID
+2 = HIGH
+```
+
+Ternary systems provide an interesting perspective on computer architecture, digital logic design, and numerical representation.
+
+TriCore was created to make these concepts accessible through experimentation and exploration.
+
+---
+
+# 📸 Screenshots
+
+### Main Menu
+
+*(Add screenshot here)*
+
+### Logic Gate Simulator
+
+*(Add screenshot here)*
+
+### Logic Circuit Simulator
+
+*(Add screenshot here)*
+
+### Signal Propagation Trace
+
+*(Add screenshot here)*
+
+---
+
+# 🚀 Installation
+
+Clone the repository:
 
 ```bash
-git clone https://github.com/Ja4deep/TriCore.git```
+git clone https://github.com/Ja4deep/TriCore.git
+```
 
-Move into the project directory.
+Navigate to the project directory:
 
 ```bash
 cd TriCore
 ```
 
-Install the required dependencies.
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application.
+Run the application:
 
 ```bash
 python main.py
@@ -131,23 +218,26 @@ python main.py
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```text
 TriCore/
 │
-├── converters/
 ├── arithmetic/
-├── learn_center/
+├── balanced_ternary/
+├── digital_logic/
+├── logic_circuit_simulator/
+├── ui/
 ├── tests/
 ├── assets/
+│
 ├── main.py
 └── README.md
 ```
 
 ---
 
-## 🧪 Testing
+# 🧪 Testing
 
 Run the test suite using:
 
@@ -155,25 +245,56 @@ Run the test suite using:
 pytest
 ```
 
-The project includes tests covering:
+Current testing covers:
 
 * Number system conversions
-* Arithmetic operations
-* Validation
+* Ternary arithmetic
+* Logic gate evaluation
+* Truth table generation
+* Circuit validation
+* Signal propagation
+* Input validation
 * Edge cases
-* Carry and borrow logic
 
 ---
 
-## 🛠 Built With
+# 🛠 Built With
 
-* Python 3.12+
-* Colorama
-* Pytest
+* Python 3
+* Object-Oriented Programming
+* Terminal-Based User Interface
+* Educational Simulation Design
 
 ---
 
-## 📄 License
+# 🗺 Roadmap
+
+Planned future additions include:
+
+* Ternary Arithmetic Logic Unit (ALU)
+* Register Simulation
+* Memory Components
+* Sequential Logic
+* CPU Architecture Modules
+* Enhanced Visualizations
+* Additional Educational Content
+
+---
+
+# 🎯 Educational Goals
+
+TriCore aims to:
+
+* Teach number systems and numerical representation
+* Introduce ternary computing concepts
+* Demonstrate digital logic principles
+* Visualize circuit behavior
+* Encourage hands-on learning
+* Make computer architecture accessible to students
+
+---
+
+# 📄 License
 
 This project is licensed under the MIT License.
 
@@ -181,8 +302,8 @@ This project is licensed under the MIT License.
 
 <div align="center">
 
-**If you found TriCore useful or interesting, consider giving the repository a ⭐.**
+### ⭐ If you find TriCore useful, consider starring the repository.
 
-It helps others discover the project and supports future development.
+Your support helps the project grow and reach more learners.
 
 </div>

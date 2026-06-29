@@ -203,8 +203,12 @@ def test_large_number_operations_match_decimal_arithmetic() -> None:
     product_result = multiply_numbers("222222222222", "111111").result
     division_result = divide_numbers(left, right)
 
-    assert ternary_to_decimal(sum_result) == ternary_to_decimal(left) + ternary_to_decimal(right)
-    assert ternary_to_decimal(difference_result) == ternary_to_decimal(left) - ternary_to_decimal(right)
+    assert ternary_to_decimal(sum_result) == ternary_to_decimal(
+        left
+    ) + ternary_to_decimal(right)
+    assert ternary_to_decimal(difference_result) == ternary_to_decimal(
+        left
+    ) - ternary_to_decimal(right)
     assert ternary_to_decimal(product_result) == (
         ternary_to_decimal("222222222222") * ternary_to_decimal("111111")
     )

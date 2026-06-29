@@ -117,7 +117,11 @@ def add_unsigned(
     steps = []
 
     for position, (left_digit, right_digit) in enumerate(
-        zip(iter_digits_from_right(left_aligned), iter_digits_from_right(right_aligned))
+        zip(
+            iter_digits_from_right(left_aligned),
+            iter_digits_from_right(right_aligned),
+            strict=True,
+        )
     ):
         operands = [trit_to_int(left_digit), trit_to_int(right_digit)]
         column_total = sum(operands) + carry

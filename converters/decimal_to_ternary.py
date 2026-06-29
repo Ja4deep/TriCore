@@ -1,5 +1,6 @@
-import sys
+"""Educational decimal-to-ordinary-ternary conversion helpers."""
 
+from arithmetic.utils import clean_input
 from ui.terminal import (
     error_screen,
     explanation_screen,
@@ -9,10 +10,6 @@ from ui.terminal import (
     prompt,
     result_screen,
 )
-
-
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
 
 
 def decimal_to_ternary(n: int) -> str:
@@ -45,11 +42,6 @@ def decimal_to_ternary(n: int) -> str:
 
     # Digits are generated in reverse order, so reverse them
     return "".join(reversed(digits))
-
-
-def clean_input(raw_input_value: str) -> str:
-    """Return input with whitespace and hidden BOM characters removed."""
-    return raw_input_value.strip().replace("\ufeff", "").replace("\xef\xbb\xbf", "")
 
 
 def get_decimal_input() -> int:
@@ -147,7 +139,7 @@ def ternary_to_decimal_value(ternary: str) -> int:
     total = 0
 
     for power, digit in enumerate(reversed(digits)):
-        total += int(digit) * (3 ** power)
+        total += int(digit) * (3**power)
 
     return sign * total
 
@@ -162,7 +154,7 @@ def verify_conversion(number: int, ternary: str) -> str:
 
     for index, digit in enumerate(digits):
         power = highest_power - index
-        place_value = 3 ** power
+        place_value = 3**power
         contribution = int(digit) * place_value
         evaluated_terms.append(contribution)
         lines.append(f"({digit} x {place_value}) = {contribution}")
@@ -204,7 +196,9 @@ def display_results(number: int) -> None:
     display_step_by_step_conversion(number)
 
     print_screen(
-        explanation_screen("Verification", verify_conversion(number, ternary).splitlines())
+        explanation_screen(
+            "Verification", verify_conversion(number, ternary).splitlines()
+        )
     )
 
     print_screen(

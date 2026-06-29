@@ -4,11 +4,14 @@ from __future__ import annotations
 
 from typing import Iterable, Sequence
 
-
-ORDINARY_TERNARY_DIGITS = frozenset({"0", "1", "2"})
-BALANCED_TERNARY_DIGITS = frozenset({"T", "0", "1"})
-BOM_CHARACTERS = ("\ufeff", "\xef\xbb\xbf")
-SUPPORTED_BASE = 3
+from config import (
+    BALANCED_TERNARY_DIGITS,
+    BOM_CHARACTERS,
+    ORDINARY_TERNARY_DIGITS,
+    SUPPORTED_BASE,
+    TERNARY_SIGNAL_VALUES,
+)
+from exceptions import InvalidBaseError, InvalidNumberError
 
 
 def clean_input(raw_input_value: str) -> str:
@@ -29,7 +32,7 @@ def has_outer_whitespace(value: str) -> bool:
 def validate_not_empty(value: str, *, field_name: str = "Input") -> str:
     """Validate that a string is not empty."""
     if value == "":
-        raise ValueError(f"{field_name} cannot be empty.")
+        raise InvalidNumberError(f"{field_name} cannot be empty.")
 
     return value
 
@@ -37,7 +40,9 @@ def validate_not_empty(value: str, *, field_name: str = "Input") -> str:
 def validate_no_outer_whitespace(value: str, *, field_name: str = "Input") -> str:
     """Validate that a string has no leading or trailing whitespace."""
     if has_outer_whitespace(value):
-        raise ValueError(f"{field_name} cannot contain leading or trailing whitespace.")
+        raise InvalidNumberError(
+            f"{field_name} cannot contain leading or trailing whitespace."
+        )
 
     return value
 
@@ -54,7 +59,7 @@ def validate_digits(
 
     if invalid_digits:
         allowed_display = ", ".join(sorted(allowed_digit_set))
-        raise ValueError(f"{field_name} can only contain {allowed_display}.")
+        raise InvalidNumberError(f"{field_name} can only contain {allowed_display}.")
 
     return value
 
@@ -72,7 +77,7 @@ def validate_no_leading_zeros(
     sign, digits = split_sign(value)
 
     if len(digits) > 1 and digits.startswith("0"):
-        raise ValueError(f"{field_name} cannot contain leading zeros.")
+        raise InvalidNumberError(f"{field_name} cannot contain leading zeros.")
 
     return sign + digits
 
@@ -112,7 +117,7 @@ def validate_number_string(
 
     sign, digits = split_sign(normalized_value)
     if sign and not allow_negative_sign:
-        raise ValueError(f"{field_name} cannot contain a negative sign.")
+        raise InvalidNumberError(f"{field_name} cannot contain a negative sign.")
 
     validate_not_empty(digits, field_name=field_name)
     validate_digits(digits, allowed_digits, field_name=field_name)
@@ -147,7 +152,7 @@ def validate_ordinary_ternary(
 def validate_supported_base(base: int) -> int:
     """Validate that an arithmetic operation is using ordinary ternary."""
     if base != SUPPORTED_BASE:
-        raise ValueError("TriCore arithmetic currently supports base 3 only.")
+        raise InvalidBaseError("TriCore arithmetic currently supports base 3 only.")
 
     return base
 
@@ -225,15 +230,15 @@ def trit_to_int(trit: str) -> int:
     """Convert one ordinary ternary digit to an integer."""
     validate_digits(trit, ORDINARY_TERNARY_DIGITS, field_name="Trit")
     if len(trit) != 1:
-        raise ValueError("Trit must be exactly one digit.")
+        raise InvalidNumberError("Trit must be exactly one digit.")
 
     return int(trit)
 
 
 def int_to_trit(value: int) -> str:
     """Convert a one-digit integer value to an ordinary ternary digit."""
-    if value not in {0, 1, 2}:
-        raise ValueError("Trit value must be 0, 1, or 2.")
+    if value not in TERNARY_SIGNAL_VALUES:
+        raise InvalidNumberError("Trit value must be 0, 1, or 2.")
 
     return str(value)
 
@@ -247,7 +252,7 @@ def split_digits(value: str) -> list[str]:
 def align_numbers(*numbers: str, fill: str = "0") -> tuple[str, ...]:
     """Left-pad numbers so their digit strings have the same length."""
     if len(fill) != 1:
-        raise ValueError("Fill must be a single character.")
+        raise InvalidNumberError("Fill must be a single character.")
     if not numbers:
         return ()
 
@@ -265,7 +270,7 @@ def iter_digits_from_right(value: str) -> list[str]:
 def chunk_from_right(value: str, chunk_size: int) -> list[str]:
     """Split a number string into chunks from right to left."""
     if chunk_size < 1:
-        raise ValueError("Chunk size must be at least 1.")
+        raise InvalidNumberError("Chunk size must be at least 1.")
 
     digits = split_sign(value)[1]
     chunks = []
@@ -284,6 +289,6 @@ def ensure_same_length(values: Sequence[str]) -> tuple[str, ...]:
 
     lengths = {len(split_sign(value)[1]) for value in values}
     if len(lengths) != 1:
-        raise ValueError("Values must have the same digit length.")
+        raise InvalidNumberError("Values must have the same digit length.")
 
     return tuple(values)

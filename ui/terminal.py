@@ -8,6 +8,7 @@ from textwrap import wrap
 try:
     from colorama import Fore, Style, init
 except ImportError:  # pragma: no cover - only used outside the project venv.
+
     class _NoColor:
         BLACK = ""
         BLUE = ""
@@ -28,7 +29,7 @@ except ImportError:  # pragma: no cover - only used outside the project venv.
 init(autoreset=True)
 
 
-WIDTH = 48
+WIDTH = 72
 INNER_WIDTH = WIDTH - 2
 CONTENT_WIDTH = INNER_WIDTH - 4
 TABLE_RULE = "─"
@@ -54,7 +55,7 @@ def _fit_line(text: str, width: int = CONTENT_WIDTH) -> list[str]:
 
 
 def _border(left: str, fill: str, right: str, width: int = INNER_WIDTH) -> str:
-    """Return a Unicode box border line."""
+    """Return a Unicode box border."""
     return left + (fill * width) + right
 
 
@@ -78,8 +79,7 @@ def box(
     color: str = COLOR_NORMAL,
 ) -> str:
     """Render a bordered section using Unicode box-drawing characters."""
-    rendered_lines = [_border("╔", "═", "╗")]
-    rendered_lines.append(_content_line(title, align="center"))
+    rendered_lines = [_border("╔", "═", "╗"), _content_line(title, align="center")]
 
     if subtitle:
         rendered_lines.append(_content_line(subtitle, align="center"))
@@ -102,7 +102,7 @@ def menu_screen(
     subtitle: str = "",
 ) -> str:
     """Render a consistent menu screen."""
-    lines = [f"{key} │ {label}" for key, label in options]
+    lines = [f"{key:>2} │ {label}" for key, label in options]
     return box(title, lines, subtitle=subtitle, color=COLOR_TITLE)
 
 
@@ -149,9 +149,10 @@ def print_screen(screen: str) -> None:
     """Print a rendered screen with a leading blank line for readability."""
     print()
     print(screen)
+    print()
 
 
-def prompt(label: str = "Enter your choice") -> str:
+def prompt(label: str = "Select an option") -> str:
     """Read a user input value with consistent styling."""
     try:
         return input(color_text(f"\n{label}: ", COLOR_NORMAL)).strip()
@@ -194,3 +195,9 @@ def table_lines(headers: Sequence[str], rows: Sequence[Sequence[object]]) -> lis
 def message_lines(*lines: str) -> list[str]:
     """Return a reusable list of message lines."""
     return list(lines)
+
+
+class ReturnToMainMenu(Exception):
+    """Signal that a module should return to the TriCore main menu."""
+
+    pass

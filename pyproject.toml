@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tricore"
+version = "0.1.0"
+description = "Educational ternary computing lab with converters, arithmetic, digital logic, and circuit simulation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "TriCore Contributors" }]
+keywords = ["ternary", "education", "digital-logic", "arithmetic"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = ["colorama>=0.4.6"]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.0",
+    "mypy>=1.10",
+    "pytest>=8.0",
+    "ruff>=0.5.0",
+]
+
+[project.scripts]
+tricore = "main:main"
+
+[tool.setuptools]
+py-modules = ["assets", "config", "exceptions", "logging_config", "main"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "arithmetic*",
+    "converters*",
+    "digital_logic*",
+    "learn_center*",
+    "logic_circuit_simulator*",
+    "ui*",
+]
+exclude = ["tests*", "assets*", ".venv*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = [".venv", "__pycache__", ".git"]
+
+[tool.ruff.lint]
+select = ["E", "F", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+explicit_package_bases = true
+exclude = ["^\\.venv/", "^tests/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
